@@ -102,6 +102,7 @@ body {
   flex-direction: column;
   background: url('/images/city-window-bg.jpg') center/cover no-repeat;
   background-attachment: fixed;
+  transition: background-position 0.3s ease-out;
 }
 
 /* Banner styles */
@@ -327,6 +328,11 @@ iframe {
     </style>
   </head>
   <body data-ryu-obtrusive-scrollbars="false">
+    <!-- Background music -->
+    <audio id="background-music" autoplay muted loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <svg style="display: none">
       <symbol
         id="icon-flag"
@@ -481,6 +487,73 @@ iframe {
         banner.classList.add("dismissed");
         setTimeout(() => banner.remove(), 300);
       }
+
+      // Parallax effect on scroll and mouse move
+      function initParallax() {
+        const body = document.body;
+        let scrollY = 0;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        // Listen for scroll events
+        window.addEventListener('scroll', () => {
+          scrollY = window.scrollY;
+          updateParallax();
+        }, { passive: true });
+
+        // Listen for mouse movement
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          updateParallax();
+        }, { passive: true });
+
+        function updateParallax() {
+          // Calculate parallax offset based on scroll and mouse position
+          const scrollOffset = scrollY * 0.15;
+          const mouseOffsetX = (mouseX - window.innerWidth / 2) * 0.02;
+          const mouseOffsetY = (mouseY - window.innerHeight / 2) * 0.02;
+
+          const offsetX = mouseOffsetX;
+          const offsetY = scrollOffset + mouseOffsetY;
+
+          body.style.backgroundPosition = `calc(center + ${offsetX}px) calc(center + ${offsetY}px)`;
+        }
+      }
+
+      // Auto-play music with user interaction fallback
+      function initAutoplayMusic() {
+        const audio = document.getElementById('background-music');
+        
+        if (!audio) return;
+
+        // Try to play immediately
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            // Audio is playing
+            console.log('🎵 Music started playing!');
+          }).catch(() => {
+            // Autoplay was prevented, wait for user interaction
+            const startMusicOnInteraction = () => {
+              audio.muted = false;
+              audio.play().catch(e => console.log('Could not play audio:', e));
+              document.removeEventListener('click', startMusicOnInteraction);
+              document.removeEventListener('touchstart', startMusicOnInteraction);
+            };
+
+            document.addEventListener('click', startMusicOnInteraction, { once: true });
+            document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+          });
+        }
+      }
+
+      // Initialize features when DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        initParallax();
+        initAutoplayMusic();
+      });
     </script>
   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"cfb6543e268d4ceb92c8170675caa481","r":1}' crossorigin="anonymous"></script>
 </body>
