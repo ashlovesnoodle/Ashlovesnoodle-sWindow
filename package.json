@@ -1,0 +1,15 @@
+{
+  "name": "the-music-baby",
+  "version": "1.0.0",
+  "description": "A music application",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "build": "echo 'No build step needed'"
+  },
+  "keywords": ["music"],
+  "author": "",
+  "license": "ISC"
+}
