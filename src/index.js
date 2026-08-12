@@ -53,7 +53,13 @@ const server = http.createServer((req, res) => {
             res.end('Not Found');
             return;
           }
-          res.writeHead(200, { 'Content-Type': getMimeType('.html') });
+          const headers = {
+            'Content-Type': getMimeType('.html'),
+            'Cache-Control': 'public, max-age=3600',
+            'X-UA-Compatible': 'IE=edge',
+            'X-Content-Type-Options': 'nosniff'
+          };
+          res.writeHead(200, headers);
           res.end(data2);
         });
       } else {
@@ -66,7 +72,24 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(filePath);
     const contentType = getMimeType(ext);
     
-    res.writeHead(200, { 'Content-Type': contentType });
+    // Set response headers for better mobile performance
+    const headers = {
+      'Content-Type': contentType,
+      'X-UA-Compatible': 'IE=edge',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'SAMEORIGIN'
+    };
+    
+    // Add cache control headers
+    if (ext === '.html') {
+      headers['Cache-Control'] = 'public, max-age=3600'; // 1 hour for HTML
+    } else if (['.js', '.css', '.svg', '.jpg', '.jpeg', '.png', '.gif', '.webp', '.woff', '.woff2'].includes(ext)) {
+      headers['Cache-Control'] = 'public, max-age=31536000, immutable'; // 1 year for static assets
+    } else {
+      headers['Cache-Control'] = 'public, max-age=86400'; // 1 day for others
+    }
+    
+    res.writeHead(200, headers);
     res.end(data);
   });
 });

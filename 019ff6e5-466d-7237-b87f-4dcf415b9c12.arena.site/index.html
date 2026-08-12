@@ -2,10 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
     <title>Ashlovesnoodle's Window</title>
-    <link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
-    <link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/images/Img.jpg" type="image/jpeg" />
+    <link rel="shortcut icon" href="/images/Img.jpg" type="image/jpeg" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://019ff6e5-466d-7237-b87f-4dcf415b9c12.arena.site/" />
@@ -223,6 +227,101 @@ iframe {
   height: 100%;
   border: none;
   display: block;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  .floating-banner {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    flex-direction: column;
+    width: auto;
+  }
+
+  .banner-padding {
+    padding: 12px 12px;
+    width: 100%;
+  }
+
+  .banner-link-wrapper {
+    gap: 8px;
+    width: 100%;
+  }
+
+  .banner-action-container {
+    border-left: none;
+    border-top: 1px solid rgba(45, 47, 53, 0.08);
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  .banner-upper-text {
+    font-size: 13px;
+  }
+
+  .banner-lower-text {
+    font-size: 11px;
+  }
+
+  .action-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .banner-upper-text {
+    font-size: 12px;
+  }
+
+  .banner-lower-text {
+    font-size: 10px;
+  }
+
+  .banner-logo svg {
+    height: 24px;
+  }
+
+  .floating-banner {
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+  }
+
+  .banner-padding {
+    padding: 10px 10px;
+  }
+
+  iframe {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Improve touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .action-btn:hover {
+    color: #2d2d2d;
+  }
 }
 
     </style>

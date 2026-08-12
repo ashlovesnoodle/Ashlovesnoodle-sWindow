@@ -45,6 +45,23 @@ This project is configured for Vercel deployment. To deploy:
 └── .vercelignore             # Files to exclude from deployment
 ```
 
+## Features
+
+- ✅ **Mobile Responsive** - Fully optimized for all device sizes
+- ✅ **Touch-Friendly** - Enhanced controls for touch devices
+- ✅ **Performance Optimized** - Intelligent caching strategies
+- ✅ **Progressive Enhancement** - Works on all browsers
+- ✅ **Security Headers** - Built-in security headers for production
+
+## Mobile Optimization Details
+
+The website includes:
+- Responsive CSS media queries for tablets (≤768px) and phones (≤480px)
+- Touch-friendly button sizing (minimum 44x44px)
+- Optimized background image handling for mobile
+- Apple mobile web app support
+- Smart cache control for assets and content
+
 ## Environment Variables
 
 The server automatically uses the `PORT` environment variable set by Vercel. No additional configuration needed.
