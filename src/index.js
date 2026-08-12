@@ -83,6 +83,9 @@ const server = http.createServer((req, res) => {
     // Add cache control headers
     if (ext === '.html') {
       headers['Cache-Control'] = 'public, max-age=3600'; // 1 hour for HTML
+    } else if (filePath.includes('favicon') || filePath.includes('img.png')) {
+      headers['Cache-Control'] = 'public, max-age=86400'; // 1 day for favicons
+      headers['Pragma'] = 'no-cache';
     } else if (['.js', '.css', '.svg', '.jpg', '.jpeg', '.png', '.gif', '.webp', '.woff', '.woff2'].includes(ext)) {
       headers['Cache-Control'] = 'public, max-age=31536000, immutable'; // 1 year for static assets
     } else {
