@@ -65,3 +65,4 @@ The website includes:
 ## Environment Variables
 
 The server automatically uses the `PORT` environment variable set by Vercel. No additional configuration needed.
+
