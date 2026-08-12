@@ -1,0 +1,30 @@
+{
+  "name": "Ashlovesnoodle's Window",
+  "short_name": "The Music Baby",
+  "description": "A music application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2d2d2d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/img.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/img.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/img.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -6,3 +6,5 @@ README.md
 *.log
 .env
 .env.local
+# DO NOT exclude website folder
+# !/019ff6e5-466d-7237-b87f-4dcf415b9c12.arena.site
